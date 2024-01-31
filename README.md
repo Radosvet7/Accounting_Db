@@ -73,7 +73,7 @@ CREATE TABLE ProductsClients (
 
 ## 2. Insert some sample data into the database. Write a query to add the following records into the corresponding tables. All IDs should be auto-generated.
 
-image for insertion
+![image](image_insert.PNG)
 
 ```sql
 INSERT INTO Products ([Name], 
@@ -132,7 +132,7 @@ FROM   invoices
 ORDER  BY amount DESC,
           duedate ASC
 ```
-output result 5
+![image](result5.PNG)
 
 ## 6. Select all products with "ADR" or "Others" categories. Order results by Price (descending). Required columns: Id, Name, Price, CategoryName
 
@@ -147,7 +147,7 @@ FROM   products AS p
 WHERE  c.NAME IN ( 'ADR', 'Others' )
 ORDER  BY p.price DESC
 ```
-output result 6
+![image](result6.PNG)
 
 ## 7. Select all clients without products. Order them by name (ascending). Required columns: Id, Client, Address
 
