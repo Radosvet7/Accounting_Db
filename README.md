@@ -110,10 +110,10 @@ UPDATE Clients
 
 ```sql
 DELETE FROM Invoices
-	WHERE ClientId = 11
+	WHERE ClientId IN (SELECT DISTINCT Id FROM Clients WHERE LEFT(NumberVAT, 2) = 'IT')
 
 DELETE FROM ProductsClients
-	WHERE ClientId = 11
+	WHERE ClientId IN (SELECT DISTINCT Id FROM Clients WHERE LEFT(NumberVAT, 2) = 'IT')
 
 DELETE FROM Clients
 	WHERE LEFT(NumberVAT, 2) = 'IT'
