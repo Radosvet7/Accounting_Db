@@ -123,7 +123,7 @@ WHERE  clientid IN (SELECT DISTINCT id
 DELETE FROM clients
 WHERE  LEFT(numbervat, 2) = 'IT' 
 ```
-## 5. Select all invoices, ordered by amount (descending), then by due date (ascending).
+## 5. Select all invoices, ordered by amount (descending), then by due date (ascending). Required columns: Number, Currency
 
 ```sql
 SELECT [number],
@@ -134,7 +134,7 @@ ORDER  BY amount DESC,
 ```
 output result 5
 
-## 6. Select all products with "ADR" or "Others" categories. Order results by Price (descending).
+## 6. Select all products with "ADR" or "Others" categories. Order results by Price (descending). Required columns: Id, Name, Price, CategoryName
 
 ```sql
 SELECT p.id,
@@ -149,7 +149,7 @@ ORDER  BY p.price DESC
 ```
 output result 6
 
-## 7. Select all clients without products. Order them by name (ascending).
+## 7. Select all clients without products. Order them by name (ascending). Required columns: Id, Client, Address
 
 ```sql
 SELECT c.id,
@@ -168,3 +168,23 @@ WHERE  pc.productid IS NULL
 ORDER  BY c.[name] ASC
 ```
 output result 7
+
+## 8. Select the first 7 invoices that were issued before 2023-01-01 and have an EUR currency or the amount of an invoice is greater than 500.00 and the VAT number of the corresponding client starts with "DE". Order the result by invoice number (ascending), then by amount (descending). Required columns: Number, Amount, Client
+
+```sql
+SELECT TOP 7 i.number,
+             i.amount,
+             c.NAME AS Client
+FROM   invoices AS i
+       JOIN clients AS c
+         ON i.clientid = c.id
+WHERE  ( Year(i.issuedate) < 2023
+         AND i.currency = 'EUR' )
+        OR ( i.amount > 500
+             AND LEFT(c.numbervat, 2) = 'DE' )
+ORDER  BY i.number ASC,
+          i.amount DESC
+```
+
+output result 8
+
