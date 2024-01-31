@@ -94,8 +94,7 @@ INSERT INTO Invoices (Number, IssueDate, DueDate, Amount, Currency, ClientId)
 	(1950101013, '2023-02-17', '2023-04-18', 615.15, 'USD', 19);
 ```
 
-## 3. We've decided to change the due date of the invoices, issued in November 2022. Update the due date and change it to 2023-04-01.
-## Then, you have to change the addresses of the clients, which contain "CO" in their names. The new value of the addresses should be Industriestr, 79, 2353, Guntramsdorf, Austria.
+## 3. We've decided to change the due date of the invoices, issued in November 2022. Update the due date and change it to 2023-04-01. Then, you have to change the addresses of the clients, which contain "CO" in their names. The new value of the addresses should be Industriestr, 79, 2353, Guntramsdorf, Austria.
 
 ```sql
 UPDATE Invoices
