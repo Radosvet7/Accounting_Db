@@ -167,7 +167,7 @@ FROM   clients AS c
 WHERE  pc.productid IS NULL
 ORDER  BY c.[name] ASC
 ```
-output result 7
+![image](result7.PNG)
 
 ## 8. Select the first 7 invoices that were issued before 2023-01-01 and have an EUR currency or the amount of an invoice is greater than 500.00 and the VAT number of the corresponding client starts with "DE". Order the result by invoice number (ascending), then by amount (descending). Required columns: Number, Amount, Client
 
@@ -186,7 +186,7 @@ ORDER  BY i.number ASC,
           i.amount DESC
 ```
 
-output result 8
+![image](result8.PNG)
 
 ## 9. Select all of the clients that have a name, not ending in "KG", and display their most expensive product and their VAT number. Order by product price (descending). Required columns: Client, Price, VAT Number
 
@@ -205,7 +205,7 @@ GROUP  BY c.[name],
 ORDER  BY Max(p.price) DESC
 ```
 
-output result 9
+![image](result9.PNG)
 
 ## 10. Select all clients, which have bought products. Select their name and average price (rounded down to the nearest integer). Show only the results for clients, whose products are distributed by vendors with "FR" in their VAT number. Order the results by average price (ascending), then by client name (descending).
 
@@ -225,7 +225,7 @@ ORDER  BY Floor(Avg(p.price)) ASC,
           c.[name] DESC
 ```
 
-output result 10
+![image](result10.PNG)
 
 ## 11. Create a user-defined function, named udf_ProductWithClients(@name) that receives a product's name.
 The function should return the total number of clients that the product has been sold to.
