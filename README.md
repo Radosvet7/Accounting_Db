@@ -2,7 +2,7 @@
 
 ## 1. Create a database called Accounting with the following diagram:
 
-![image](Diagram.PNG)
+![image](helper/Diagram.PNG)
 
 ```sql
 CREATE TABLE Countries (
@@ -73,7 +73,7 @@ CREATE TABLE ProductsClients (
 
 ## 2. Insert some sample data into the database. Write a query to add the following records into the corresponding tables. All IDs should be auto-generated.
 
-![image](image_insert.PNG)
+![image](helper/image_insert.PNG)
 
 ```sql
 INSERT INTO Products ([Name], 
@@ -132,7 +132,7 @@ FROM   invoices
 ORDER  BY amount DESC,
           duedate ASC
 ```
-![image](result5.PNG)
+![image](helper/result5.PNG)
 
 ## 6. Select all products with "ADR" or "Others" categories. Order results by Price (descending). Required columns: Id, Name, Price, CategoryName
 
@@ -147,7 +147,7 @@ FROM   products AS p
 WHERE  c.NAME IN ( 'ADR', 'Others' )
 ORDER  BY p.price DESC
 ```
-![image](result6.PNG)
+![image](helper/result6.PNG)
 
 ## 7. Select all clients without products. Order them by name (ascending). Required columns: Id, Client, Address
 
@@ -167,7 +167,7 @@ FROM   clients AS c
 WHERE  pc.productid IS NULL
 ORDER  BY c.[name] ASC
 ```
-![image](result7.PNG)
+![image](/helper/result7.PNG)
 
 ## 8. Select the first 7 invoices that were issued before 2023-01-01 and have an EUR currency or the amount of an invoice is greater than 500.00 and the VAT number of the corresponding client starts with "DE". Order the result by invoice number (ascending), then by amount (descending). Required columns: Number, Amount, Client
 
@@ -186,7 +186,7 @@ ORDER  BY i.number ASC,
           i.amount DESC
 ```
 
-![image](result8.PNG)
+![image](helper/result8.PNG)
 
 ## 9. Select all of the clients that have a name, not ending in "KG", and display their most expensive product and their VAT number. Order by product price (descending). Required columns: Client, Price, VAT Number
 
@@ -205,7 +205,7 @@ GROUP  BY c.[name],
 ORDER  BY Max(p.price) DESC
 ```
 
-![image](result9.PNG)
+![image](helper/result9.PNG)
 
 ## 10. Select all clients, which have bought products. Select their name and average price (rounded down to the nearest integer). Show only the results for clients, whose products are distributed by vendors with "FR" in their VAT number. Order the results by average price (ascending), then by client name (descending).
 
@@ -225,7 +225,7 @@ ORDER  BY Floor(Avg(p.price)) ASC,
           c.[name] DESC
 ```
 
-![image](result10.PNG)
+![image](helper/result10.PNG)
 
 ## 11. Create a user-defined function, named udf_ProductWithClients(@name) that receives a product's name.
 The function should return the total number of clients that the product has been sold to.
