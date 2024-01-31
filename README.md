@@ -227,3 +227,27 @@ ORDER  BY Floor(Avg(p.price)) ASC,
 
 output result 10
 
+## 11. Create a user-defined function, named udf_ProductWithClients(@name) that receives a product's name.
+The function should return the total number of clients that the product has been sold to.
+
+```sql
+CREATE FUNCTION Udf_productwithclients(@name NVARCHAR(35))
+returns INT
+AS
+  BEGIN
+      DECLARE @result INT
+
+      SELECT @result = Count (*)
+      FROM   clients AS c
+             JOIN productsclients AS pc
+               ON pc.clientid = c.id
+             JOIN products AS p
+               ON pc.productid = p.id
+                  AND p.[name] = @name
+
+      IF ( @result IS NULL )
+        SET @result = 0;
+
+      RETURN @result;
+  END;
+```
