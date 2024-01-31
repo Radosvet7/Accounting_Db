@@ -123,3 +123,29 @@ WHERE  clientid IN (SELECT DISTINCT id
 DELETE FROM clients
 WHERE  LEFT(numbervat, 2) = 'IT' 
 ```
+## 5. Select all invoices, ordered by amount (descending), then by due date (ascending).
+
+```sql
+SELECT [number],
+       currency
+FROM   invoices
+ORDER  BY amount DESC,
+          duedate ASC
+```
+output result 5
+
+## 6. Select all products with "ADR" or "Others" categories. Order results by Price (descending).
+
+```sql
+SELECT p.id,
+       p.NAME,
+       p.price,
+       c.NAME AS CategoryName
+FROM   products AS p
+       JOIN categories AS c
+         ON p.categoryid = c.id
+WHERE  c.NAME IN ( 'ADR', 'Others' )
+ORDER  BY p.price DESC
+```
+output result 6
+
