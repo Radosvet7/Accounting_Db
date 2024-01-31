@@ -1,1 +1,1 @@
-# Accounting_Db
+# Accounting Database creation and querying
