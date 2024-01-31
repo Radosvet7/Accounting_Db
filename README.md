@@ -1,6 +1,6 @@
 # Accounting Database creation and querying
 
-## 1.Create a database called Accounting with the following diagram:
+## 1. Create a database called Accounting with the following diagram:
 
 image diagram
 
@@ -70,3 +70,6 @@ CREATE TABLE ProductsClients (
 	CONSTRAINT PK_ProductsClients PRIMARY KEY (ProductId, ClientId)
 );
 ```
+
+## 2. Insert some sample data into the database. Write a query to add the following records into the corresponding tables. All IDs should be auto-generated.
+<image for insertion>
