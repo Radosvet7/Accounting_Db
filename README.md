@@ -98,21 +98,23 @@ INSERT INTO Invoices (Number, IssueDate, DueDate, Amount, Currency, ClientId)
 
 ```sql
 UPDATE Invoices
-SET DueDate = '2023-04-01'
-WHERE MONTH(IssueDate) = 11 and YEAR(IssueDate) = 2022
+	SET DueDate = '2023-04-01'
+	WHERE MONTH(IssueDate) = 11 and YEAR(IssueDate) = 2022
 
 UPDATE Clients
-SET AddressId = 3
-WHERE [Name] LIKE '%CO%'
+	SET AddressId = 3
+	WHERE [Name] LIKE '%CO%'
 ```
 
 ## 4. In table Clients, delete every client, whose VAT number starts with "IT". Keep in mind that there could be foreign key constraint conflicts.
 
 ```sql
 DELETE FROM Invoices
-WHERE ClientId = 11
+	WHERE ClientId = 11
+
 DELETE FROM ProductsClients
-WHERE ClientId = 11
+	WHERE ClientId = 11
+
 DELETE FROM Clients
-WHERE LEFT(NumberVAT, 2) = 'IT'
+	WHERE LEFT(NumberVAT, 2) = 'IT'
 ```
