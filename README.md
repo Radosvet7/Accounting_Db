@@ -105,3 +105,14 @@ UPDATE Clients
 SET AddressId = 3
 WHERE [Name] LIKE '%CO%'
 ```
+
+## 4. In table Clients, delete every client, whose VAT number starts with "IT". Keep in mind that there could be foreign key constraint conflicts.
+
+```sql
+DELETE FROM Invoices
+WHERE ClientId = 11
+DELETE FROM ProductsClients
+WHERE ClientId = 11
+DELETE FROM Clients
+WHERE LEFT(NumberVAT, 2) = 'IT'
+```
