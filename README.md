@@ -97,24 +97,29 @@ INSERT INTO Invoices (Number, IssueDate, DueDate, Amount, Currency, ClientId)
 ## 3. We've decided to change the due date of the invoices, issued in November 2022. Update the due date and change it to 2023-04-01. Then, you have to change the addresses of the clients, which contain "CO" in their names. The new value of the addresses should be Industriestr, 79, 2353, Guntramsdorf, Austria.
 
 ```sql
-UPDATE Invoices
-	SET DueDate = '2023-04-01'
-	WHERE MONTH(IssueDate) = 11 and YEAR(IssueDate) = 2022
+UPDATE invoices
+SET    duedate = '2023-04-01'
+WHERE  Month(issuedate) = 11
+       AND Year(issuedate) = 2022
 
-UPDATE Clients
-	SET AddressId = 3
-	WHERE [Name] LIKE '%CO%'
+UPDATE clients
+SET    addressid = 3
+WHERE  [name] LIKE '%CO%' 
 ```
 
 ## 4. In table Clients, delete every client, whose VAT number starts with "IT". Keep in mind that there could be foreign key constraint conflicts.
 
 ```sql
-DELETE FROM Invoices
-	WHERE ClientId IN (SELECT DISTINCT Id FROM Clients WHERE LEFT(NumberVAT, 2) = 'IT')
+DELETE FROM invoices
+WHERE  clientid IN (SELECT DISTINCT id
+                    FROM   clients
+                    WHERE  LEFT(numbervat, 2) = 'IT')
 
-DELETE FROM ProductsClients
-	WHERE ClientId IN (SELECT DISTINCT Id FROM Clients WHERE LEFT(NumberVAT, 2) = 'IT')
+DELETE FROM productsclients
+WHERE  clientid IN (SELECT DISTINCT id
+                    FROM   clients
+                    WHERE  LEFT(numbervat, 2) = 'IT')
 
-DELETE FROM Clients
-	WHERE LEFT(NumberVAT, 2) = 'IT'
+DELETE FROM clients
+WHERE  LEFT(numbervat, 2) = 'IT' 
 ```
