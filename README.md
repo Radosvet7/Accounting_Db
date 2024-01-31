@@ -149,3 +149,22 @@ ORDER  BY p.price DESC
 ```
 output result 6
 
+## 7. Select all clients without products. Order them by name (ascending).
+
+```sql
+SELECT c.id,
+       c.[name]   AS Client,
+       Concat(a.streetname, ' ', a.streetnumber, ', ', a.city, ', ', a.postcode,
+       ', ',
+       cn.[name]) AS Adreess
+FROM   clients AS c
+       JOIN addresses AS a
+         ON c.addressid = a.id
+       JOIN countries AS cn
+         ON a.countryid = cn.id
+       LEFT JOIN productsclients AS pc
+              ON c.id = pc.clientid
+WHERE  pc.productid IS NULL
+ORDER  BY c.[name] ASC
+```
+output result 7
