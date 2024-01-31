@@ -251,3 +251,22 @@ AS
       RETURN @result;
   END;
 ```
+
+## 12. Create a stored procedure, named usp_SearchByCountry(@country) that receives a country name. The procedure must print full information about all vendors that have an address in the given country: Name, NumberVAT, Street Name and Number (concatenated), PostCode and City (concatenated). Order them by Name (ascending) and City (ascending).
+
+```sql
+CREATE PROCEDURE Usp_searchbycountry @country VARCHAR(10)
+AS
+    SELECT v.[name]                                     AS Vendor,
+           v.numbervat                                  AS VAT,
+           Concat_ws(' ', a.streetname, a.streetnumber) AS [Street Info],
+           Concat_ws(' ', a.city, a.postcode)           AS [City Info]
+    FROM   vendors AS v
+           JOIN addresses AS a
+             ON v.addressid = a.id
+           JOIN countries AS c
+             ON a.countryid = c.id
+    WHERE  c.[name] = @country
+    ORDER  BY v.[name] ASC,
+              a.city ASC;
+```
