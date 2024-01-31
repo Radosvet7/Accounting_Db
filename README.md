@@ -2,7 +2,7 @@
 
 ## 1. Create a database called Accounting with the following diagram:
 
-image diagram
+![image](Diagram.PNG)
 
 ```sql
 CREATE TABLE Countries (
