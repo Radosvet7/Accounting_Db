@@ -207,3 +207,23 @@ ORDER  BY Max(p.price) DESC
 
 output result 9
 
+## 10. Select all clients, which have bought products. Select their name and average price (rounded down to the nearest integer). Show only the results for clients, whose products are distributed by vendors with "FR" in their VAT number. Order the results by average price (ascending), then by client name (descending).
+
+```sql
+SELECT c.[name]            AS Client,
+       Floor(Avg(p.price)) AS [Average Price]
+FROM   clients AS C
+       JOIN productsclients AS pc
+         ON pc.clientid = c.id
+       JOIN products AS p
+         ON pc.productid = p.id
+       JOIN vendors AS v
+         ON p.vendorid = v.id
+WHERE  v.numbervat LIKE '%FR%'
+GROUP  BY c.[name]
+ORDER  BY Floor(Avg(p.price)) ASC,
+          c.[name] DESC
+```
+
+output result 10
+
