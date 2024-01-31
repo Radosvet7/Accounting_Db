@@ -72,4 +72,4 @@ CREATE TABLE ProductsClients (
 ```
 
 ## 2. Insert some sample data into the database. Write a query to add the following records into the corresponding tables. All IDs should be auto-generated.
-<image for insertion>
+image for insertion
