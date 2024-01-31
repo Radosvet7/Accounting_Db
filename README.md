@@ -188,3 +188,22 @@ ORDER  BY i.number ASC,
 
 output result 8
 
+## 9. Select all of the clients that have a name, not ending in "KG", and display their most expensive product and their VAT number. Order by product price (descending). Required columns: Client, Price, VAT Number
+
+```sql
+SELECT c.[name]     AS Client,
+       Max(p.price) AS Price,
+       c.numbervat  AS [VAT Number]
+FROM   clients AS c
+       JOIN productsclients AS pc
+         ON pc.clientid = c.id
+       JOIN products AS p
+         ON pc.productid = p.id
+WHERE  c.[name] NOT LIKE '%KG'
+GROUP  BY c.[name],
+          c.numbervat
+ORDER  BY Max(p.price) DESC
+```
+
+output result 9
+
